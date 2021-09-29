@@ -1,0 +1,7 @@
+public enum ReturnCodes {
+    SUCCESS,
+    INVALID_ROOM_CODE,
+    NOT_A_UNIQUE_ROOM_CODE,
+    ROOM_CODE_NOT_FOUND,
+    UNSPECIFIED_ERROR
+}

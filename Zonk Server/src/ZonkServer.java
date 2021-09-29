@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 
 public class ZonkServer {
@@ -14,7 +13,5 @@ public class ZonkServer {
 
     public void start() throws IOException {
         HostServices hostServices = new HostServices();
-        System.out.println(hostServices.getRoomCode(new NetworkInformation("ur mom", "69")));
-
     }
 }
