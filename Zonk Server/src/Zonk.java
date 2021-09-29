@@ -11,7 +11,7 @@ import java.io.IOException;
  * to Host or Guest services, depending on the type of client that made
  * the request.
  *
- * Information is stored within Server Storage
+ * Information is stored within Server Storage.txt
  */
 
 public class Zonk {

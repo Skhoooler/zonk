@@ -13,7 +13,8 @@ public class ZonkServer {
     }
 
     public void start() throws IOException {
-        Selector selector = Selector.open();
+        HostServices hostServices = new HostServices();
+        System.out.println(hostServices.getRoomCode(new NetworkInformation("ur mom", "69")));
 
     }
 }
