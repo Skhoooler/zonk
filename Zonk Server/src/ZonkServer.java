@@ -13,5 +13,6 @@ public class ZonkServer {
 
     public void start() throws IOException {
         HostServices hostServices = new HostServices();
+        hostServices.getRoomCode(new NetworkInformation("42069", "hello there"));
     }
 }

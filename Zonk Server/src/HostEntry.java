@@ -10,6 +10,10 @@ public class HostEntry {
         this.returnCode = returnCode;
     }
 
+    public boolean entryFound(){
+        return returnCode == ReturnCodes.ENTRY_FOUND;
+    }
+
     public String getRoomCode() {
         return roomCode;
     }

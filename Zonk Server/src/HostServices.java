@@ -15,7 +15,16 @@ class HostServices extends UserServices{
      * @return a unique room code
      */
     public String getRoomCode(NetworkInformation networkInfo) throws IOException {
-        String roomCode = generateRoomCode();
+        boolean roomCodeIsUnique = false;
+        String roomCode = null;
+
+        do {
+            roomCode = generateRoomCode();
+
+            // The room code is unique if it is not already in server storage
+            roomCodeIsUnique = !searchServerStorage(roomCode).entryFound();
+        } while (!roomCodeIsUnique);
+
         writeToServerStorage(roomCode, networkInfo);
         return roomCode;
     }

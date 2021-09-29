@@ -20,13 +20,32 @@ public class UserServices {
 
     private HostEntry readFromServerStorage(NetworkInformation networkInformation){
         File file = new File(serverStoragePath);
+        Pattern pattern = Pattern.compile(networkInformation.getIp() + " " + networkInformation.getPort());
+        Matcher matcher = null;
+
         try {
             Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()){
+                final String line = scanner.nextLine();
+
+                matcher = pattern.matcher(line);
+                if (matcher.find()){
+                    String[] entry = line.split(" ");
+
+                    String foundRoomCode = entry[0];
+                    NetworkInformation foundNetworkInfo = new NetworkInformation(entry[1], entry[2]);
+
+                    return new HostEntry(foundRoomCode, foundNetworkInfo, ReturnCodes.ENTRY_FOUND);
+                }
+            }
         }
         catch (Exception e){
             e.printStackTrace();
+            return new HostEntry("NULL", new NetworkInformation("NULL", "NULL"), ReturnCodes.UNSPECIFIED_ERROR);
         }
-        return null;
+
+        return new HostEntry("NULL", new NetworkInformation("NULL", "NULL"), ReturnCodes.ENTRY_NOT_FOUND);
     }
 
     /**
@@ -37,7 +56,7 @@ public class UserServices {
      * @return A Host Entry object that encapsulates the room code, NetworkInformation and a Return Code
      */
 
-    private HostEntry readFromServerStorage(String roomCode){
+    protected HostEntry searchServerStorage(String roomCode){
         File file = new File(serverStoragePath);
         Pattern pattern = Pattern.compile(roomCode);
         Matcher matcher = null;
@@ -86,6 +105,6 @@ public class UserServices {
         } catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println("File written");
+        System.out.println("File written with Room Code " + roomCode);
     }
 }
