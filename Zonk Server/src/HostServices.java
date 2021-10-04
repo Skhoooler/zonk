@@ -23,10 +23,21 @@ class HostServices extends UserServices{
 
             // The room code is unique if it is not already in server storage
             roomCodeIsUnique = !searchServerStorage(roomCode).entryFound();
+
+            // Check in right at the start
+            roomCheckIn(roomCode);
         } while (!roomCodeIsUnique);
 
         writeToServerStorage(roomCode, networkInfo);
         return roomCode;
+    }
+
+    /**
+     * Checks a room code into Server Storage
+     * @param roomCode The room code to be checked into Server Storage
+     */
+    public void roomCheckIn(String roomCode){
+        checkIn(roomCode);
     }
 
     /**
